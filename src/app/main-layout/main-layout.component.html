@@ -1,0 +1,41 @@
+<mat-drawer-container class="example-container" autosize>
+    <mat-drawer #drawer class="example-sidenav mat-elevation-z1" mode="side" opened="true">
+        <div class="sidebar-title">
+            <div class="dot red"></div>
+            <div class="dot amber"></div>
+            <div class="dot green"></div>
+            <div class="title">{{currentUser | uppercase}}</div>
+        </div>
+
+        <div class="sidebar-options">
+
+            <button mat-menu-item *ngFor="let item of menuOptions" (click)="navigate(item.link)">
+                <mat-icon>{{item.icon}}</mat-icon>
+                <span>{{item.title}}</span>
+            </button>
+
+        </div>
+    </mat-drawer>
+
+    <mat-toolbar color="primary">
+        <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon"
+            (click)="drawer.toggle()">
+            <mat-icon>sort</mat-icon>
+        </button>
+
+        <span class="example-spacer"></span>
+
+        <button mat-icon-button [matMenuTriggerFor]="menu" class="example-icon menu">
+            <mat-icon>account_circle</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="logout()">
+                <mat-icon>logout</mat-icon>
+                <span>Logout</span>
+            </button>
+        </mat-menu>
+    </mat-toolbar>
+
+    <router-outlet></router-outlet>
+
+</mat-drawer-container>

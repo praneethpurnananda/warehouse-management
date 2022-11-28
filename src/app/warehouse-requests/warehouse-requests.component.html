@@ -1,0 +1,74 @@
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="sno">
+      <th mat-header-cell *matHeaderCellDef> SNo. </th>
+      <td mat-cell *matCellDef="let element;let i = index"> {{i + 1}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="pname">
+        <th mat-header-cell *matHeaderCellDef> Product Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.pname}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="wname">
+        <th mat-header-cell *matHeaderCellDef> Warehouse Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.wname}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="qty_req">
+        <th mat-header-cell *matHeaderCellDef> Quantity Requested </th>
+        <td mat-cell *matCellDef="let element"> {{element.qty_req}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="req_status">
+        <th mat-header-cell *matHeaderCellDef> Trade Status </th>
+        <td mat-cell *matCellDef="let element"> 
+            <button mat-raised-button color="primary" *ngIf="element.req_status === 'in progress' " (click)="manageTrade(manageRequest,element)">Manage Trade</button>
+
+            <button mat-stroked-button color="primary" *ngIf="element.req_status === 'accepted' " style="cursor: default;">Accepted</button>
+
+            <button mat-stroked-button color="warn" *ngIf="element.req_status === 'out of stock' " style="cursor: default;">Declined</button>
+        </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+
+<ng-template #manageRequest>
+    <h2 matDialogTitle>Create New Trade Request</h2>
+    <mat-dialog-content class="mat-typography">
+        <mat-list role="list">
+            <mat-list-item role="listitem">
+                <div>Product Name - </div>
+                <div>{{Reqdetails.pname}}</div>
+            </mat-list-item>
+
+            <mat-list-item role="listitem">
+                <div>Store Name - </div>
+                <div>{{Reqdetails.sname}}</div>
+            </mat-list-item>
+
+            <mat-list-item role="listitem">
+                <div>Quantity Requested - </div>
+                <div>{{Reqdetails.qty_req}}</div>
+            </mat-list-item>
+
+            <mat-list-item role="listitem">
+                <div>Description - </div>
+                <div *ngIf="Reqdetails.req_desc.length > 0">{{Reqdetails.req_desc}}</div>
+                <div *ngIf="Reqdetails.req_desc.length == 0">NA</div>
+            </mat-list-item>
+          </mat-list>  
+          
+          <mat-form-field appearance="outline" style="width: 100%" class="desc">
+            <mat-label>Request Description</mat-label>
+            <textarea matInput [(ngModel)]="Reqdetails.wh_comments"></textarea>
+        </mat-form-field>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <button mat-raised-button color="warn" (click)="declineReq(Reqdetails)">Decline Request</button>
+        <button mat-raised-button color="primary" (click)="approveReq(Reqdetails)">Approve Request</button>
+    </mat-dialog-actions>
+</ng-template>

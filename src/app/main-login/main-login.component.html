@@ -1,0 +1,43 @@
+<section class="main-wrapper-section">
+    <div class="container">
+        <div class="wrapper-box left-container">
+            <h1>Welcome Back!</h1>
+            <p>To keep connected with us please login with your personal info</p>
+            <p>Login as </p>
+            <button mat-flat-button color="primary" routerLink="/login-warehouse">Warehouse</button> &nbsp;
+            <button mat-flat-button color="primary" routerLink="/login-store">Store</button> &nbsp;
+            <button mat-flat-button color="primary" routerLink="/login-supplier">Supplier</button> &nbsp;
+        </div>
+        <div class="wrapper-box right-container">
+            <br>
+            <h1>Warehouse  Login</h1>
+            <p>Manage requests and trade products easily</p>
+            <div class="form">
+                <form [formGroup]="loginForm">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Email Address</mat-label>
+                        <input type="text" matInput placeholder="Placeholder" formControlName="email">
+                        <mat-icon matSuffix>email</mat-icon>
+                        <mat-error *ngIf="loginForm.controls['email'].hasError('required')">email  is required
+                        </mat-error>
+                        <mat-error *ngIf="loginForm.controls['email'].hasError('email')">Invalid email 
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Password</mat-label>
+                        <input [type]="showPassword ? 'text' : 'password' " matInput placeholder="Placeholder"
+                            formControlName="password">
+                        <mat-icon matSuffix style="cursor: pointer;" (click)="passwordVisibility()">{{showPassword ?
+                            'visibility':'visibility_off'}}</mat-icon>
+                        <mat-error *ngIf="loginForm.controls['password'].hasError('required')">Password is required
+                        </mat-error>
+                        <mat-error *ngIf="loginForm.controls['password'].hasError('pattern')">Invalid Password</mat-error>
+                    </mat-form-field>
+                </form>
+            </div>
+            <button mat-flat-button color="primary" class="login-button" [disabled]="!loginForm.valid"
+                (click)="userLogin()">Login</button>   
+        </div>
+    </div>
+</section>

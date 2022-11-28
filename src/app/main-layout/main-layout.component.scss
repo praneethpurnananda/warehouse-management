@@ -1,0 +1,54 @@
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+.menu mat-icon{
+    font-size: 30px;
+}
+
+.example-container {
+    width: 100%;
+    height: 100%;
+}
+  
+.sidebar-title{
+    height: 10%;
+    padding: 5% 5% 0 7%;
+}
+
+.sidebar-title .title{
+    margin-top: 2%;
+}
+
+.dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background: #f9f9f9;
+    border-radius: 50%;
+    margin: 0 4px 0 0;
+}
+
+.red {
+    background: #FF6057;
+    border: 1px solid #E14640;
+}
+
+.amber {
+    background: #FFBD2E;
+    border: 1px solid #DFA123;
+}
+
+.green {
+    background: #27C93F;
+    border: 1px solid #1DAD2B;
+}
+
+.sidebar-options button span{
+    font-size: 17px;
+}
+
+.sidebar-options button{
+    margin-bottom: 5%;
+}
+  
